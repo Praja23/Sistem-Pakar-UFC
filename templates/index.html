@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UFC Lightweight Fight Predictor</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>UFC Lightweight Fight Predictor</h1>
+      </div>
+      {% if fighters %}
+      <div class="info">
+        Loaded {{ fighters|length }} fighters | Last updated: {{ last_updated }}
+      </div>
+      <button id="refreshBtn" class="refresh-btn">
+        <i class="fas fa-sync-alt"></i> Refresh Data
+      </button>
+      <form id="fightForm" class="space-y-4">
+        <div>
+          <label for="fighter_a">Pilih Fighter 1:</label>
+          <select id="fighter_a" name="fighter_a" required>
+            <option value="">-- Pilih Fighter --</option>
+            {% for fighter in fighters %}
+            <option value="{{ fighter }}">{{ fighter }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div>
+          <label for="fighter_b">Pilih Fighter 2:</label>
+          <select id="fighter_b" name="fighter_b" required>
+            <option value="">-- Pilih Fighter --</option>
+            {% for fighter in fighters %}
+            <option value="{{ fighter }}">{{ fighter }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <button type="submit" class="predict-btn">Predict Winner</button>
+      </form>
+      {% else %}
+      <div class="result-card">
+        <p>
+          Loading fighters... Scraping bisa makan 3-4 menit. Cek koneksi atau
+          refresh nanti, bro!
+        </p>
+      </div>
+      {% endif %}
+      <div id="loading">
+        <i class="fas fa-spinner fa-spin"></i> Lagi prediksi atau refresh,
+        tunggu bentar...
+      </div>
+      <div id="result"></div>
+    </div>
+    <script src="/static/js/script.js"></script>
+  </body>
+</html>
