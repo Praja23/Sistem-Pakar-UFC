@@ -98,8 +98,10 @@ label {
 .result-card ul {
   list-style-type: disc;
   margin-left: 1.5rem;
-  font-size: 0.85rem;
+  font-size: 0.7rem; /* Dikecilin biar 8 alasan muat */
   color: #b0b0b0;
+  line-height: 1.2; /* Rapetin */
+  padding-right: 0.5rem;
 }
 #loading {
   text-align: center;
